@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" v-show="!(path ==='/')">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
     <font-awesome-icon icon="user-secret" />
@@ -29,3 +29,21 @@
   }
 }
 </style>
+<script>
+    export default {
+        data(){
+            return{
+                path:''
+            }
+        },
+        // 判断路由
+        mounted() {
+          this.path = this.$route.path;
+        },
+        watch:{
+            $route(to){
+                this.path = to.path
+            }
+        }
+    }
+</script>
